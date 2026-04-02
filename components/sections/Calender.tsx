@@ -1,6 +1,7 @@
 "use client";
 import React, { useRef, useEffect, useState } from "react";
 import { motion } from "framer-motion";
+import Script from "next/script";
 
 const fadeUp = (delay: number) => ({
   initial: { opacity: 0, y: 20 },
@@ -10,10 +11,8 @@ const fadeUp = (delay: number) => ({
 
 const Calendar: React.FC = () => {
   const sectionRef = useRef<HTMLElement>(null);
-  const widgetRef = useRef<HTMLDivElement>(null);
   const [inView, setInView] = useState(false);
 
-  // IntersectionObserver for animation
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -28,24 +27,6 @@ const Calendar: React.FC = () => {
     return () => observer.disconnect();
   }, []);
 
-  // Inject script INSIDE the widget container div
-  useEffect(() => {
-    if (!widgetRef.current) return;
-
-    const script = document.createElement("script");
-    script.src = "https://services.leadconnectorhq.com/prospecting/client/widget-embed.js";
-    script.setAttribute("data-widget-id", "69c55f439fb3285a903733e5");
-    script.async = true;
-
-    widgetRef.current.appendChild(script);
-
-    return () => {
-      if (widgetRef.current?.contains(script)) {
-        widgetRef.current.removeChild(script);
-      }
-    };
-  }, []);
-
   return (
     <section
       ref={sectionRef}
@@ -56,16 +37,16 @@ const Calendar: React.FC = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.65 }}
-          className="text-center mb-10"
+          className="text-center mb-10 pt-4"
         >
           <p className="text-[#32DC32] text-[10px] font-semibold uppercase tracking-[.14em] mb-3">
-            Témoignage client
+            Consultation Gratuite
           </p>
           <h2
             className="font-heading font-black text-[#0a0a0a] leading-tight tracking-tight"
             style={{ fontSize: "clamp(22px, 2.5vw, 30px)" }}
           >
-            Des résultats concrets pour des entreprises comme la vôtre
+            Analysez votre audit gratuit avec nos experts
           </h2>
         </motion.div>
 
@@ -74,20 +55,28 @@ const Calendar: React.FC = () => {
             {/* Card header */}
             <div className="px-6 py-5 border-b border-white/10">
               <p className="text-[#32DC32] text-[10px] font-semibold uppercase tracking-[.12em] mb-1">
-                📅 Sélection du créneau
+                📅 Sélection un créneau
               </p>
               <h2 className="font-heading font-bold text-white text-[17px]">
-                Réservez votre audit personnalisé
+                Votre session expert gratuite vous attend
               </h2>
               <p className="text-gray-500 text-[12px] mt-0.5">
-                Expert dédié · 20 min offertes · Sans engagement
+                Expert dédié · 30 min offertes · Sans engagement
               </p>
             </div>
 
-            {/* Widget renders here */}
-            <div
-              ref={widgetRef}
-              className="bg-white min-h-[560px]"
+            {/* Booking calendar */}
+            <iframe
+              src="https://link.clientx.ai/widget/booking/FaTjIcBByxSPo8MtEwwD"
+              style={{ width: '100%', border: 'none', overflow: 'hidden', height: '750px' }}
+              scrolling="no"
+              id="FaTjIcBByxSPo8MtEwwD_calendar"
+              title="Réserver une consultation ClientX"
+              className="bg-white"
+            />
+            <Script
+              src="https://link.clientx.ai/js/form_embed.js"
+              strategy="afterInteractive"
             />
 
             {/* Micro-copy */}
@@ -95,7 +84,7 @@ const Calendar: React.FC = () => {
               <p className="text-[11px] text-gray-500">
                 Aucun engagement —{" "}
                 <span className="text-[#32DC32] font-semibold">
-                  audit 100% offert
+                  consultation 100% offerte
                 </span>
               </p>
             </div>

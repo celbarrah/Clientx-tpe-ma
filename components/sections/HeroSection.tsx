@@ -17,7 +17,7 @@ export default function HeroSection() {
           <div className="space-y-8">
             <h1 className="text-4xl md:text-5xl font-extrabold text-[#111] leading-tight">
               Analysez votre visibilité<br />
-              <span className="text-[#32DC32]">digitale en 20 min !</span>
+              <span className="text-[#32DC32]">digitale en 1 min !</span>
             </h1>
 
             <div className="relative">
@@ -34,10 +34,10 @@ export default function HeroSection() {
             {/* Stats / Social Proof */}
             <div className="space-y-4">
                <p className="text-lg text-[#111]">
-                <span className="font-extrabold text-[#32DC32]">200 000 </span> Clients nous font confiance Mds €
+                <span className="font-extrabold text-[#32DC32]">+100 000 </span> Clients nous font confiance
               </p>
               <p className="text-lg text-[#111]">
-                <span className="font-extrabold text-[#32DC32]">4,2 Mds €</span> générés depuis 2013
+                <span className="font-extrabold text-[#32DC32]"> Une agence certifiée ISO 9001</span>
               </p>
             </div>
           </div>
@@ -47,13 +47,12 @@ export default function HeroSection() {
             <div className="bg-white rounded-3xl shadow-[0_20px_50px_rgba(0,0,0,0.1)] border border-gray-100 overflow-hidden">
               <div className="p-8 text-center border-b border-gray-50">
                 <h2 className="text-2xl font-bold text-[#111]">
-                  Audit Digital Gratuit
+                  Obtenez votre audit visibilité gratuit
                 </h2>
-                <p className="text-gray-500 mt-1">Remplissez le formulaire pour commencer</p>
               </div>
 
               {/* The Widget is now the main hero action */}
-              <div className="p-2">
+              <div className="p-2" id="audit">
                 <LeadConnectorWidget />
               </div>
             </div>

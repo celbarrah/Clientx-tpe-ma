@@ -49,11 +49,6 @@ export default function StatsSection() {
           </a>
         </div>
 
-        {/* Sources note */}
-        <p className="text-center text-xs text-gray-400 pb-8">
-          Sources : Médiamétrie / HubSpot State of Marketing — études 2023-2024
-        </p>
-
       </div>
     </section>
   );

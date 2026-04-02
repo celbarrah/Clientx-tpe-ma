@@ -1,9 +1,24 @@
 "use client";
 import { useEffect, useState } from "react";
 import Image from "next/image";
+import {
+  Sheet,
+  SheetContent,
+  SheetTrigger,
+} from "@/components/ui/sheet";
+import { Menu, X, Phone } from "lucide-react";
+
+const NAV_LINKS: { label: string; href: string }[] = [
+  { label: "Découvrir ClientX", href: "https://clientx.uk" },
+  { label: "Nos services",      href: "https://clientx.uk" },
+  { label: "Blog",              href: "https://clientx.uk/blog" },
+  { label: "Rejoignez-nous",    href: "https://clientx.uk" },
+  { label: "Nous contacter",    href: "#audit" },
+];
 
 export default function Navbar() {
-  const [scrolled, setScrolled] = useState(false);
+  const [scrolled, setScrolled] = useState<boolean>(false);
+  const [open, setOpen] = useState<boolean>(false);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 4);
@@ -18,6 +33,7 @@ export default function Navbar() {
       }`}
     >
       <div className="max-w-6xl mx-auto px-6 h-[68px] flex items-center justify-between">
+
         {/* Logo */}
         <Image
           src="https://clientx.uk/wp-content/uploads/2026/01/clientx-iso.png"
@@ -29,23 +45,103 @@ export default function Navbar() {
           unoptimized
         />
 
-        {/* Right: CTA */}
+        {/* Desktop nav links */}
+        <nav className="hidden md:flex items-center gap-6">
+          {NAV_LINKS.map((item) => (
+            <a
+              key={item.label}
+              href={item.href}
+              className="text-sm text-gray-600 hover:text-gray-900 transition-colors whitespace-nowrap"
+            >
+              {item.label}
+            </a>
+          ))}
+        </nav>
+
+        {/* Right: CTA + mobile burger */}
         <div className="flex items-center gap-3">
           <a
-            href="#widget"
+            href="tel:33757933495"
             className="hidden sm:inline-flex items-center gap-2 text-sm text-gray-600 hover:text-gray-900 transition-colors"
           >
-            <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth={1.8} viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z" />
-            </svg>
-            +33 1 00 00 00 00
+            <Phone className="w-4 h-4" />
+            +33 757 93 34 95
           </a>
+
           <a
-            href="#widget"
-            className="bg-[#32DC32] text-black text-sm font-semibold px-5 py-2.5 rounded-full hover:bg-[#27b527] transition-colors duration-150"
+            href="#audit"
+            className="hidden sm:inline-flex bg-[#32DC32] text-black text-sm font-semibold px-5 py-2.5 rounded-full hover:bg-[#27b527] transition-colors duration-150"
           >
             Lancer mon audit gratuit
           </a>
+
+          {/* Mobile menu */}
+          <Sheet open={open} onOpenChange={setOpen}>
+            <SheetTrigger asChild>
+              <button
+                className="md:hidden p-2 rounded-lg hover:bg-gray-100 transition-colors"
+                aria-label="Ouvrir le menu"
+              >
+                <Menu className="w-5 h-5 text-gray-700" />
+              </button>
+            </SheetTrigger>
+
+            <SheetContent side="right" className="w-[300px] p-0 bg-white">
+              <div className="flex flex-col h-full">
+
+                {/* Sheet header */}
+                <div className="flex items-center justify-between px-6 py-5 border-b border-gray-100">
+                  <Image
+                    src="https://clientx.uk/wp-content/uploads/2026/01/clientx-iso.png"
+                    alt="ClientX"
+                    width={100}
+                    height={28}
+                    className="h-10 w-auto"
+                    unoptimized
+                  />
+                  <button
+                    onClick={() => setOpen(false)}
+                    className="p-1.5 rounded-lg hover:bg-gray-100 transition-colors"
+                  >
+                    <X className="w-5 h-5 text-gray-500" />
+                  </button>
+                </div>
+
+                {/* Nav links */}
+                <nav className="flex flex-col px-4 py-6 gap-1 flex-1">
+                  {NAV_LINKS.map((item) => (
+                    <a
+                      key={item.label}
+                      href={item.href}
+                      onClick={() => setOpen(false)}
+                      className="px-3 py-3 text-sm font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50 rounded-lg transition-colors"
+                    >
+                      {item.label}
+                    </a>
+                  ))}
+                </nav>
+
+                {/* Bottom CTAs */}
+                <div className="px-4 pb-8 flex flex-col gap-3 border-t border-gray-100 pt-5">
+                  <a
+                    href="tel:33757933495"
+                    className="flex items-center justify-center gap-2 text-sm text-gray-600 hover:text-gray-900 transition-colors py-2"
+                  >
+                    <Phone className="w-4 h-4" />
+                    +33 757 93 34 95
+                  </a>
+                  <a
+                    href="#widget"
+                    onClick={() => setOpen(false)}
+                    className="bg-[#32DC32] text-black text-sm font-semibold px-5 py-3 rounded-full hover:bg-[#27b527] transition-colors duration-150 text-center"
+                  >
+                    Lancer mon audit gratuit
+                  </a>
+                </div>
+
+              </div>
+            </SheetContent>
+          </Sheet>
         </div>
       </div>
     </header>

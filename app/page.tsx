@@ -3,6 +3,7 @@ import HeroSection from "@/components/sections/HeroSection";
 import StepsSection from "@/components/sections/StepsSection";
 import StatsSection from "@/components/sections/StatsSection";
 import Footer from "@/components/layout/Footer";
+import Calendar from "@/components/sections/Calender";
 
 export default function LandingPage() {
 
@@ -12,6 +13,7 @@ export default function LandingPage() {
       <main>
         <HeroSection />
         <StepsSection />
+        <Calendar />
         <StatsSection />
       </main>
       <Footer />

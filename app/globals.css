@@ -1,83 +1,20 @@
 @import "tailwindcss";
-@import "tw-animate-css";
-@import "shadcn/tailwind.css";
 
-@custom-variant dark (&:is(.dark *));
-
-/* ─── Design tokens ─── */
 :root {
-  --brand:     #32DC32;
-  --brand-dim: rgba(50,220,50,0.10);
-  --black:     #0a0a0a;
-  --dark:      #111111;
-  --card-dark: #161616;
-  --border-dark: #222222;
-  --white:     #ffffff;
-  --gray-50:   #f9fafb;
-  --gray-100:  #f3f4f6;
-  --gray-200:  #e5e7eb;
-  --gray-400:  #9ca3af;
-  --gray-500:  #6b7280;
-  --gray-600:  #4b5563;
-  --gray-700:  #374151;
-  --gray-900:  #111827;
-
-  /* Shadcn overrides */
-  --background: var(--white);
-  --foreground:  var(--black);
-  --border: var(--gray-200);
-  --ring:   var(--brand);
-  --primary: var(--brand);
-  --primary-foreground: var(--black);
-  --radius: 0.25rem;
+  --brand: #32DC32;
+  --brand-dark: #27b527;
 }
 
-@layer base {
-  * { box-sizing: border-box; }
-  html { scroll-behavior: smooth; }
-  body {
-    background: var(--white);
-    color: var(--black);
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-  }
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-/* ─── Fonts ─── */
-.font-heading { font-family: var(--font-syne), sans-serif; }
-.font-body    { font-family: var(--font-inter), sans-serif; }
-
-/* ─── Marquee ─── */
-@keyframes marquee-x {
-  from { transform: translateX(0); }
-  to   { transform: translateX(-50%); }
+body {
+  font-family: var(--font-inter), system-ui, Arial, sans-serif;
+  color: #111;
+  background: #fff;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
-.marquee-inner {
-  display: flex;
-  width: max-content;
-  animation: marquee-x 40s linear infinite;
-}
-.marquee-inner:hover { animation-play-state: paused; }
-
-/* ─── Pulse dot ─── */
-@keyframes pulse-dot {
-  0%, 100% { opacity: 1; transform: scale(1); }
-  50%       { opacity: 0.35; transform: scale(0.6); }
-}
-.pulse-dot { animation: pulse-dot 2s ease-in-out infinite; }
-
-/* ─── ScrollStack fix ─── */
-.scroll-stack-scroller { overflow: visible !important; height: auto !important; }
-.scroll-stack-inner    { padding: 0 !important; }
-.scroll-stack-card {
-  border-radius: 16px !important;
-  height: auto   !important;
-  margin: 0      !important;
-  padding: 0     !important;
-}
-
-/* ─── Scrollbar ─── */
-::-webkit-scrollbar       { width: 4px; }
-::-webkit-scrollbar-track { background: transparent; }
-::-webkit-scrollbar-thumb { background: var(--gray-200); border-radius: 2px; }
-::-webkit-scrollbar-thumb:hover { background: var(--brand); }

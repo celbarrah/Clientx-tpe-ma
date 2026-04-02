@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, Syne } from "next/font/google";
+import { Inter } from "next/font/google";
 import "./globals.css";
 
 const inter = Inter({
@@ -8,19 +8,12 @@ const inter = Inter({
   display: "swap",
 });
 
-const syne = Syne({
-  subsets: ["latin"],
-  variable: "--font-syne",
-  weight: ["400", "600", "700", "800"],
-  display: "swap",
-});
-
 export const metadata: Metadata = {
-  title: "ClientX — Audit Gratuit TPE France",
+  title: "Audit Digital Gratuit — ClientX | Agence Marketing Digital",
   description:
-    "Réservez votre audit gratuit en 20 min. Nos experts analysent votre visibilité Google, vos avis et votre site — gratuitement, sans engagement.",
+    "Analysez votre visibilité digitale en 20 min avec les experts ClientX. Certifiés ISO 9001. Plus de 200 entreprises accompagnées depuis 2013.",
   openGraph: {
-    title: "ClientX — Audit Gratuit TPE France",
+    title: "Audit Digital Gratuit — ClientX",
     description: "20 minutes pour identifier ce qui vous coûte des clients.",
     type: "website",
   },
@@ -28,10 +21,8 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="fr" className={`${inter.variable} ${syne.variable}`}>
-      <body className="font-body antialiased bg-white text-[#0a0a0a]">
-        {children}
-      </body>
+    <html lang="fr" className={inter.variable}>
+      <body className="antialiased bg-white text-[#111]">{children}</body>
     </html>
   );
 }

@@ -77,7 +77,7 @@ export default function Navbar() {
 
           {/* Mobile menu */}
           <Sheet open={open} onOpenChange={setOpen}>
-            <SheetTrigger asChild>
+            <SheetTrigger >
               <button
                 className="md:hidden p-2 rounded-lg hover:bg-gray-100 transition-colors"
                 aria-label="Ouvrir le menu"

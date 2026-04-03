@@ -66,7 +66,7 @@ export default function Navbar() {
             className="hidden sm:inline-flex items-center gap-2 text-sm text-gray-600 hover:text-gray-900 transition-colors"
           >
             <Phone className="w-4 h-4" />
-            +33 757 93 34 95
+            +212 6 64 91 25 56
           </a>
 
           <a

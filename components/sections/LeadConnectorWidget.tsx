@@ -14,7 +14,7 @@ export default function LeadConnectorWidget() {
     const script = document.createElement("script");
     script.src =
       "https://services.leadconnectorhq.com/prospecting/client/widget-embed.js";
-    script.setAttribute("data-widget-id", "69c55f439fb3285a903733e5");
+    script.setAttribute("data-widget-id", "69cd1e81129cbb84bab5ef1f");
     script.async = true;
 
     // ← Append INSIDE the container so the widget renders here, not at <body> bottom
